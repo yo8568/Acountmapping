@@ -108,6 +108,7 @@ coord(12) = "W"
        End If
       Next b
    Next a
+   sumEach (1)
 End Sub
    
    Function choose_ex(ByVal j As Integer) As Long
@@ -140,13 +141,14 @@ End Sub
    
   Function creatForm(ByVal i As Integer) As Integer
          
-       Range("K5").Value = "交通費"
-       Range("K6").Value = "雜費"
-       Range("K7").Value = "修繕費"
-       Range("K8").Value = "交際費"
-       Range("K9").Value = "文具用品"
-       Range("K10").Value = "稅捐"
-       Range("K11").Value = "進項稅額"
+       Range("J5").Value = "交通費"
+       Range("J6").Value = "雜費"
+       Range("J7").Value = "修繕費"
+       Range("J8").Value = "交際費"
+       Range("J9").Value = "文具用品"
+       Range("J10").Value = "稅捐"
+       Range("J11").Value = "進項稅額"
+       Range("K4").Value = "費用合計"
        Range("L4").Value = "一月"
        Range("M4").Value = "二月"
        Range("N4").Value = "三月"
@@ -164,6 +166,20 @@ End Sub
    
    
    End Function
+   
+     Function sumEach(ByVal i As Integer) As Integer
+         
+       Range("K5").Value = Application.Sum(Range("L5:W5"))
+       Range("K6").Value = Application.Sum(Range("L6:W6"))
+       Range("K7").Value = Application.Sum(Range("L7:W7"))
+       Range("K8").Value = Application.Sum(Range("L8:W8"))
+       Range("K9").Value = Application.Sum(Range("L9:W9"))
+       Range("K10").Value = Application.Sum(Range("L10:W10"))
+       Range("K11").Value = Application.Sum(Range("L11:W11"))
+     
+   
+   End Function
+   
    
    
 
