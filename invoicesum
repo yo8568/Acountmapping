@@ -1,0 +1,171 @@
+Attribute VB_Name = "Module2"
+Sub 年度總合()
+Attribute 年度總合.VB_Description = "M2N4-SLI 在 2015/3/4 錄製的巨集"
+Attribute 年度總合.VB_ProcData.VB_Invoke_Func = " \n14"
+'
+' 年度總合 Macro
+' M2N4-SLI 在 2015/3/4 錄製的巨集
+'
+
+' 費用表年度統計 Macro
+  
+
+Dim i As Integer
+Dim fee1(1 To 12) As Long '交通費
+Dim fee2(1 To 12) As Long '雜費
+Dim fee3(1 To 12) As Long '修繕費
+Dim fee4(1 To 12) As Long '交際費
+Dim fee5(1 To 12) As Long '文具用品
+Dim fee6(1 To 12) As Long '稅捐
+Dim fee7(1 To 12) As Long '進項稅額
+
+Dim coord(1 To 12) As String '總標月份座標
+coord(1) = "L"
+coord(2) = "M"
+coord(3) = "N"
+coord(4) = "O"
+coord(5) = "P"
+coord(6) = "Q"
+coord(7) = "R"
+coord(8) = "S"
+coord(9) = "T"
+coord(10) = "U"
+coord(11) = "V"
+coord(12) = "W"
+ creatForm (2)
+   For i = 5 To 1000
+   
+
+    If (Range("D" & i).Value <> "會計科目" Or Range("D" & i).Value <> "") Then
+    Dim month As Integer
+    If (getMonth(i) >= 1 And getMonth(i) <= 12) Then
+             month = getMonth(i)
+             
+             End If
+          
+            
+               
+                      If (Range("D" & i).Value = "交通費") Then
+                      
+                       fee1(month) = fee1(month) + CLng(Range("G" & i).Value)
+                      
+                       End If
+                                             
+                      If (Range("D" & i).Value = "雜費") Then
+                      fee2(month) = fee2(month) + CLng(Range("G" & i).Value)
+                      
+                       End If
+                      
+                      If (Range("D" & i).Value = "修繕費") Then
+                      
+                       fee3(month) = fee3(month) + CLng(Range("G" & i).Value)
+                       End If
+                       
+                      If (Range("D" & i).Value = "交際費") Then
+                       fee4(month) = fee4(month) + CLng(Range("G" & i).Value)
+                      End If
+                      
+                      If (Range("D" & i).Value = "文具用品") Then
+                       fee5(month) = fee5(month) + CLng(Range("G" & i).Value)
+                      End If
+                      
+                      If (Range("D" & i).Value = "稅捐") Then
+                       fee6(month) = fee6(month) + CLng(Range("G" & i).Value)
+                      End If
+                      
+                      If (Range("D" & i).Value = "進項稅額") Then
+                       fee7(month) = fee7(month) + CLng(Range("G" & i).Value)
+                       
+                      End If
+               
+                  
+      End If
+   Next i
+   
+  '
+   For a = 5 To 11
+      For b = 1 To 12
+       If a = 5 Then
+       Range(coord(b) & a) = fee1(b)
+       End If
+       If a = 6 Then
+       Range(coord(b) & a) = fee2(b)
+       End If
+       If a = 7 Then
+       Range(coord(b) & a) = fee3(b)
+       End If
+       If a = 8 Then
+       Range(coord(b) & a) = fee4(b)
+       End If
+       If a = 9 Then
+       Range(coord(b) & a) = fee5(b)
+       End If
+       If a = 10 Then
+       Range(coord(b) & a) = fee6(b)
+       End If
+       If a = 11 Then
+       Range(coord(b) & a) = fee7(b)
+       End If
+      Next b
+   Next a
+End Sub
+   
+   Function choose_ex(ByVal j As Integer) As Long
+      Dim ex As Long
+   
+      If Range("F" & j) <> 0 Then
+         ex = CLng(Range("F" & j))
+     
+      End If
+      
+      If Range("I" & j) <> 0 Then
+         ex = CLng(Range("I" & j))
+      Else
+         ex = CLng(Range("L" & j))
+      End If
+    
+    Application.Goto Reference:="巨集1"
+         choose_ex = ex
+   
+   End Function
+  Function getMonth(ByVal i As Integer) As Integer
+     
+      If (Range("B" & i).Value <> "" And IsNumeric(Range("B" & i).Value)) Then
+        getMonth = Range("B" & i).Value
+     
+      End If
+   
+   
+   End Function
+   
+  Function creatForm(ByVal i As Integer) As Integer
+         
+       Range("K5").Value = "交通費"
+       Range("K6").Value = "雜費"
+       Range("K7").Value = "修繕費"
+       Range("K8").Value = "交際費"
+       Range("K9").Value = "文具用品"
+       Range("K10").Value = "稅捐"
+       Range("K11").Value = "進項稅額"
+       Range("L4").Value = "一月"
+       Range("M4").Value = "二月"
+       Range("N4").Value = "三月"
+       Range("O4").Value = "四月"
+       Range("P4").Value = "五月"
+       Range("Q4").Value = "六月"
+       Range("R4").Value = "七月"
+       Range("S4").Value = "八月"
+       Range("T4").Value = "九月"
+       Range("U4").Value = "十月"
+       Range("V4").Value = "十一月"
+       Range("W4").Value = "十二月"
+       Range("Q3").Value = "年費用"
+       Range("Q2").Value = "富煌工程行"
+   
+   
+   End Function
+   
+   
+
+'
+
